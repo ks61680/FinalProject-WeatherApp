@@ -43,22 +43,23 @@ function formatDate(timestamp) {
 
 function displayTemp(response) {
   let temperatureElement = document.querySelector("#main-temp");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
   let currentCity = document.querySelector("#city");
-  currentCity.innerHTML = response.data.name;
   let currentDescription = document.querySelector("#description");
-  currentDescription.innerHTML = response.data.weather[0].description;
   let humidityElement = document.querySelector("#humidity");
-  humidityElement.innerHTML = response.data.main.humidity;
   let feelsLikeElement = document.querySelector("#feels-like");
-  feelsLikeElement.innerHTML = Math.round(response.data.main.feels_like);
   let windElement = document.querySelector("#wind");
-  windElement.innerHTML = Math.round(response.data.wind.speed);
   let timeElement = document.querySelector("#time");
-  timeElement.innerHTML = formatTime(response.data.dt * 1000);
   let dateElement = document.querySelector("#date");
-  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   let iconElement = document.querySelector("#icon");
+
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  currentCity.innerHTML = response.data.name;
+  currentDescription.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  feelsLikeElement.innerHTML = Math.round(response.data.main.feels_like);
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  timeElement.innerHTML = formatTime(response.data.dt * 1000);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
