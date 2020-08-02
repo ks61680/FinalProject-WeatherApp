@@ -21,6 +21,9 @@ p {
   color: purple;
   text-align: center;
 }
+a {
+  color: darkcyan;
+}
 .container {
   width: 500px;
   height: 300px;

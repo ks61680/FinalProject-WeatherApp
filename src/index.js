@@ -83,6 +83,8 @@ function handleSearch(event) {
 
 function displayCelsiusTemp(event) {
   event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#main-temp");
   let celsiusTemp = ((fahrenheitTemp - 32) * 5) / 9;
   temperatureElement.innerHTML = Math.round(celsiusTemp);
@@ -93,6 +95,8 @@ function displayCelsiusTemp(event) {
 
 function displayFahrenheitTemp(event) {
   event.preventDefault();
+  fahrenheitLink.classList.add("active");
+  celsiusLink.classList.remove("active");
   let temperatureElement = document.querySelector("#main-temp");
   temperatureElement.innerHTML = Math.round(fahrenheitTemp);
   let feelsLikeElement = document.querySelector("#feels-like");
