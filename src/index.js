@@ -1,8 +1,3 @@
-let apiKey = `6cbb4d27cc97b6552f879a3445ccd1f5`;
-let units = `imperial`;
-let city = `Boston`;
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-
 function formatTime(timestamp) {
   let time = new Date(timestamp);
   let hours = time.getHours();
@@ -67,4 +62,18 @@ function displayTemp(response) {
   iconElement.setAttribute("alt", `response.data.weather[0].description`);
 }
 
-axios.get(apiUrl).then(displayTemp);
+let searchElement = document.querySelector("#search-form");
+searchElement.addEventListener("submit", handleSearch);
+
+function search(city) {
+  let apiKey = `6cbb4d27cc97b6552f879a3445ccd1f5`;
+  let units = `imperial`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayTemp);
+}
+
+function handleSearch(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}

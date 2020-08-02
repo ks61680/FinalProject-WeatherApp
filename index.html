@@ -21,7 +21,7 @@
   <body>
     <div class="container">
       <h1 id="city"></h1>
-      <h2 id="time"></h2>
+      <h1 id="time"></h1>
       <div class="row">
         <div class="col-6">
           <h2 id="date"></h2>
@@ -37,6 +37,21 @@
           <h3>Wind: <span id="wind"></span> mph</h3>
         </div>
       </div>
+      <form id="search-form">
+        <div class="row">
+          <div class="col-7">
+            <input
+              type="search"
+              placeholder="Type City Name"
+              class="form-control"
+              id="city-input"
+            />
+          </div>
+          <div class="col-4">
+            <input class="btn btn-info" type="submit" value="Search 🔍" />
+          </div>
+        </div>
+      </form>
     </div>
     <p>Open Source Code by Kaitlyn Spaeth</p>
     <script src="src/index.js"></script>
