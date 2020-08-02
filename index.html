@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="city"></h1>
+      <h2 id="time"></h2>
+      <div class="row">
+        <div class="col-6">
+          <h2 id="date"></h2>
+          <h2>
+            <span class="mainTemp" id="main-temp"></span>°F|C
+            <img src="" alt="" id="icon" />
+          </h2>
+        </div>
+        <div class="col-6">
+          <h3 id="description"></h3>
+          <h3>Humidity: <span id="humidity"></span>%</h3>
+          <h3>Feels Like: <span id="feels-like"></span>°C</h3>
+          <h3>Wind: <span id="wind"></span> mph</h3>
+        </div>
+      </div>
+    </div>
+    <p>Open Source Code by Kaitlyn Spaeth</p>
+    <script src="src/index.js"></script>
+  </body>
+</html>
