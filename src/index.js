@@ -1,7 +1,7 @@
 function formatTime(timestamp) {
   let time = new Date(timestamp);
-  let hours = time.getHours();
-  let minutes = time.getMinutes();
+  let hours = (time.getHours() < 10 ? `0` : ``) + time.getHours();
+  let minutes = (time.getMinutes() < 10 ? `0` : ``) + time.getMinutes();
   let days = [
     "Sunday",
     "Monday",
@@ -47,11 +47,14 @@ function displayTemp(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
+  fahrenheitTemp = response.data.main.temp;
+  feelsLike = response.data.main.feels_like;
+
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   currentCity.innerHTML = response.data.name;
   currentDescription.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
-  feelsLikeElement.innerHTML = Math.round(response.data.main.feels_like);
+  feelsLikeElement.innerHTML = `${Math.round(response.data.main.feels_like)}°F`;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   timeElement.innerHTML = formatTime(response.data.dt * 1000);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
@@ -77,3 +80,31 @@ function handleSearch(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
+
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#main-temp");
+  let celsiusTemp = ((fahrenheitTemp - 32) * 5) / 9;
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+  let feelsLikeElement = document.querySelector("#feels-like");
+  let celsiusFeelsLike = ((feelsLike - 32) * 5) / 9;
+  feelsLikeElement.innerHTML = `${Math.round(celsiusFeelsLike)}°C`;
+}
+
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#main-temp");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+  let feelsLikeElement = document.querySelector("#feels-like");
+  feelsLikeElement.innerHTML = `${Math.round(feelsLike)}°F`;
+}
+
+let fahrenheitTemp = null;
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemp);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+search("New York");
