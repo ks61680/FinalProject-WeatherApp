@@ -49,13 +49,14 @@ function displayTemp(response) {
 
   fahrenheitTemp = response.data.main.temp;
   feelsLike = response.data.main.feels_like;
+  windSpeed = response.data.wind.speed;
 
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   currentCity.innerHTML = response.data.name;
   currentDescription.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
   feelsLikeElement.innerHTML = `${Math.round(response.data.main.feels_like)}°F`;
-  windElement.innerHTML = Math.round(response.data.wind.speed);
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)} MPH`;
   timeElement.innerHTML = formatTime(response.data.dt * 1000);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
@@ -85,12 +86,17 @@ function displayCelsiusTemp(event) {
   event.preventDefault();
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
+
   let temperatureElement = document.querySelector("#main-temp");
   let celsiusTemp = ((fahrenheitTemp - 32) * 5) / 9;
-  temperatureElement.innerHTML = Math.round(celsiusTemp);
   let feelsLikeElement = document.querySelector("#feels-like");
   let celsiusFeelsLike = ((feelsLike - 32) * 5) / 9;
+  let windElement = document.querySelector("#wind");
+  let kilometerWindSpeed = Math.round(windSpeed * 1.609);
+
   feelsLikeElement.innerHTML = `${Math.round(celsiusFeelsLike)}°C`;
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+  windElement.innerHTML = `${Math.round(kilometerWindSpeed)} KM/H`;
 }
 
 function displayFahrenheitTemp(event) {
@@ -98,9 +104,12 @@ function displayFahrenheitTemp(event) {
   fahrenheitLink.classList.add("active");
   celsiusLink.classList.remove("active");
   let temperatureElement = document.querySelector("#main-temp");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
   let feelsLikeElement = document.querySelector("#feels-like");
+  let windElement = document.querySelector("#wind");
+
   feelsLikeElement.innerHTML = `${Math.round(feelsLike)}°F`;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+  windElement.innerHTML = `${Math.round(windSpeed)} MPH`;
 }
 
 let fahrenheitTemp = null;
