@@ -69,11 +69,25 @@ function displayTemp(response) {
 let searchElement = document.querySelector("#search-form");
 searchElement.addEventListener("submit", handleSearch);
 
+function displayForecast(response) {
+  forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = ` 
+  <div class="col-2">
+            <h4>06:00</h4>
+            <img src="" alt="" />
+            <div class="forcastTemp"><strong>79°</strong>|74°</div>
+          </div>`;
+}
+
 function search(city) {
   let apiKey = `6cbb4d27cc97b6552f879a3445ccd1f5`;
   let units = `imperial`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+
   axios.get(apiUrl).then(displayTemp);
+
+  apiUrl = `api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function handleSearch(event) {
