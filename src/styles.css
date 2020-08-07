@@ -30,6 +30,10 @@ a {
   border: solid 5px slateblue;
   background-image: linear-gradient(#2af598, #0fbed8);
 }
+.smallImage {
+  max-width: 50px;
+  max-height: 50px;
+}
 .city {
   text-decoration: underline;
   font-size: 42px;
@@ -47,6 +51,6 @@ a {
 .active {
   color: #0056b3;
 }
-.hourlyForcasts {
+#forecast {
   color: #044147;
 }
