@@ -19,6 +19,7 @@ h3 {
 p {
   color: purple;
   text-align: center;
+  margin: 0 auto;
 }
 a {
   color: darkcyan;
