@@ -78,8 +78,11 @@ searchElement.addEventListener("submit", handleSearch);
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
-  forecastElement = "";
+  forecastElement.innerHTML = null;
   let forecast = null;
+
+  forecastElement.innerHTML = "";
+  forecast = "";
 
   for (let index = 0; index < 6; index++) {
     forecast = response.data.list[index];
