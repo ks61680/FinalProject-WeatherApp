@@ -150,4 +150,49 @@ celsiusLink.addEventListener("click", displayCelsiusTemp);
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
-search("New York");
+function retrievePosition(position) {
+  let apiKey = `6cbb4d27cc97b6552f879a3445ccd1f5`;
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let units = `imperial`;
+  let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+
+  axios.get(apiUrlCurrent).then(showPosition);
+}
+
+function showPosition(response) {
+  let temperatureElement = document.querySelector("#main-temp");
+  let currentCity = document.querySelector("h1");
+  let currentDescription = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let feelsLikeElement = document.querySelector("#feels-like");
+  let windElement = document.querySelector("#wind");
+  let timeElement = document.querySelector("#time");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
+
+  fahrenheitTemp = response.data.main.temp;
+  feelsLike = response.data.main.feels_like;
+  windSpeed = response.data.wind.speed;
+
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  currentCity.innerHTML = response.data.name;
+  currentDescription.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  feelsLikeElement.innerHTML = `${Math.round(response.data.main.feels_like)}°F`;
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)} MPH`;
+  timeElement.innerHTML = formatTime(response.data.dt * 1000);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", `response.data.weather[0].description`);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(retrievePosition);
+}
+
+let button = document.querySelector("#current-btn");
+button.addEventListener("click", getCurrentPosition);
