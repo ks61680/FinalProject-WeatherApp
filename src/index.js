@@ -68,7 +68,7 @@ function displayTemp(response) {
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", `response.data.weather[0].description`);
 }
@@ -78,14 +78,14 @@ searchElement.addEventListener("submit", handleSearch);
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
-  forecastElement = null;
+  forecastElement = "";
   let forecast = null;
 
   for (let index = 0; index < 6; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML = `<div class="col-2"> 
     <h4>${formatHours(forecast.dt * 1000)}</h4>
-            <img src="http://openweathermap.org/img/wn/${
+            <img src="https://openweathermap.org/img/wn/${
               forecast.weather[0].icon
             }@2x.png" class= "smallImage" alt="" />
             <div class="forcastTemp"><strong>${Math.round(
